@@ -55,8 +55,12 @@ GRAND TOTAL: R13000.00
 =================================
 ```
 
+
+
 ## Project structure
 
+
+```
 merchant-order-desk-and-catalogue-engine-KayMuzi
 │
 ├── .gitignore
@@ -84,3 +88,5 @@ merchant-order-desk-and-catalogue-engine-KayMuzi
                 ├── OrderTest.java
                 ├── OrderItemTest.java
                 └── OrderItemValidationTest.java
+
+```
