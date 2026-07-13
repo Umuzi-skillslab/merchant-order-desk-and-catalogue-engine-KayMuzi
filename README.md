@@ -54,3 +54,33 @@ Wireless Keyboard | Qty: 2 | Subtotal: R1000.00
 GRAND TOTAL: R13000.00
 =================================
 ```
+
+## Project structure
+
+merchant-order-desk-and-catalogue-engine-KayMuzi
+│
+├── .gitignore
+├── README.md
+├── pom.xml
+│
+└── src
+    ├── main
+    │   └── java
+    │       ├── app
+    │       │   └── Paynest.java
+    │       │
+    │       ├── domain
+    │       │   ├── Product.java
+    │       │   ├── Customer.java
+    │       │   ├── Order.java
+    │       │   └── OrderItem.java
+    │       │
+    │       └── service
+                 |── OrderService.java
+    │
+    └── test
+        └── java
+            └── domain
+                ├── OrderTest.java
+                ├── OrderItemTest.java
+                └── OrderItemValidationTest.java
