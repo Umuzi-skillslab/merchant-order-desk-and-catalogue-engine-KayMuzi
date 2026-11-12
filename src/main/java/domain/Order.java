@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import payment.PaymentMethod;
+import payment.PaymentProcessor;
+
 public class Order {
 
     private final int id;
@@ -41,6 +44,24 @@ public class Order {
         }
 
         return total;
+    }
+
+    public boolean checkout(PaymentMethod paymentMethod) {
+
+        double total = calculateTotal();
+
+        PaymentProcessor paymentProcessor = new PaymentProcessor();
+
+        boolean paymentSuccessful =
+                paymentProcessor.processPayment(paymentMethod, total);
+
+        if (paymentSuccessful) {
+            System.out.println("Order " + id + " completed successfully.");
+        } else {
+            System.out.println("Order " + id + " could not be completed.");
+        }
+
+        return paymentSuccessful;
     }
 
     public void printSummary() {
