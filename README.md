@@ -36,6 +36,8 @@ The following enhancements were implemented:
 - Integration of payment processing into the order checkout flow.
 - Support for multiple payment methods.
 - Payment confirmation and order completion messages.
+- Validation to reject zero or negative payment amounts across all payment methods.
+- Wallet balance validation to prevent payments exceeding the available balance.
 
 ### Supported Payment Methods
 
@@ -154,7 +156,7 @@ The application will create sample products, register a customer, create an orde
 To execute all unit tests, run:
 
 ```bash
-mvn test
+mvn clean test
 ```
 
 Maven will execute the tests using JUnit 5 and display the test results in the terminal.
@@ -241,6 +243,11 @@ This provides several benefits:
 
 ---
 
+## Design Decision: Monetary Values
+
+For this project, `double` was chosen to represent monetary values and perform order total calculations, keeping the implementation simple and easy to understand. 
+While this approach is suitable for the scope of the project, `BigDecimal` would be a more appropriate choice in production financial systems, where precision in monetary calculations is essential.
+
 ## Expected Application Output
 
 When running the application with EFT selected, the expected console output is:
@@ -295,6 +302,9 @@ These tests verify:
 - Order creation and calculations.
 - Order item functionality.
 - Order item validation.
+- Rejection of invalid payment amounts.
+- Wallet balance validation and insufficient-funds handling.
+- Checkout failure when a payment method is missing or payment is declined.
 
 ### Payment Tests
 
@@ -304,6 +314,7 @@ The following tests cover payment processing and checkout:
 - `CheckoutAmountTest`
 - `OrderCheckoutTest`
 - `AdditionalPaymentMethodsTest`
+- `WalletPaymentTest`
 
 These tests verify:
 
@@ -380,6 +391,8 @@ merchant-order-desk-and-catalogue-engine-KayMuzi
                 ├── CheckoutAmountTest.java
                 ├── OrderCheckoutTest.java
                 └── AdditionalPaymentMethodsTest.java
+                └── WalletPaymentTest.java
+                
 ```
 
 ---

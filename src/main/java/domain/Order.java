@@ -46,7 +46,13 @@ public class Order {
         return total;
     }
 
+
     public boolean checkout(PaymentMethod paymentMethod) {
+
+        if (paymentMethod == null) {
+            System.out.println("Checkout failed: No payment method selected.");
+            return false;
+        }
 
         double total = calculateTotal();
 
@@ -63,6 +69,7 @@ public class Order {
 
         return paymentSuccessful;
     }
+
 
     public void printSummary() {
 

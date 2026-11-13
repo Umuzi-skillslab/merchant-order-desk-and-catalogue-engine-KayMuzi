@@ -5,6 +5,7 @@ import domain.Order;
 import domain.Product;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class OrderCheckoutTest {
@@ -47,5 +48,39 @@ class OrderCheckoutTest {
         PaymentMethod paymentMethod = new WalletPayment();
 
         assertTrue(order.checkout(paymentMethod));
+    }
+
+    @Test
+    void checkoutFailsWhenWalletHasInsufficientFunds() {
+
+        Customer customer =
+                new Customer(1, "Kayleigh", "kayleigh@gmail.com");
+
+        Order order = new Order(1001, customer);
+
+        Product laptop =
+                new Product(1, "Laptop", 25000);
+
+        order.addItem(laptop, 1);
+
+        PaymentMethod paymentMethod = new WalletPayment();
+
+        assertFalse(order.checkout(paymentMethod));
+    }
+
+    @Test
+    void checkoutFailsWhenPaymentMethodIsNull() {
+
+        Customer customer =
+                new Customer(1, "Kayleigh", "kayleigh@gmail.com");
+
+        Order order = new Order(1001, customer);
+
+        Product laptop =
+                new Product(1, "Laptop", 12000);
+
+        order.addItem(laptop, 1);
+
+        assertFalse(order.checkout(null));
     }
 }
