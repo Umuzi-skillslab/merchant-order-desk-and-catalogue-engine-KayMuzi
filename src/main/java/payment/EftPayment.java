@@ -12,7 +12,7 @@ public class EftPayment implements PaymentMethod {
 
         System.out.println(
                 "Processing EFT payment for R"
-                        + String.format("%.0f", amount)
+                        + String.format("%.2f ", amount)
         );
 
         return true;

@@ -37,7 +37,7 @@ The following enhancements were implemented:
 - Support for multiple payment methods.
 - Payment confirmation and order completion messages.
 - Validation to reject zero or negative payment amounts across all payment methods.
-- Wallet balance validation to prevent payments exceeding the available balance.
+- Wallet balance validation to prevent payments that exceed the available balance.
 
 ### Supported Payment Methods
 
@@ -111,7 +111,7 @@ cd merchant-order-desk-and-catalogue-engine-KayMuzi
 ```
 
 
-### 2. Open the Project in VS Code or your chosed IDE. 
+### 2. Open the Project in VS Code or your chosen IDE. 
 
 Open Visual Studio Code.
 
@@ -179,7 +179,7 @@ public interface PaymentMethod {
 }
 ```
 
-Every payment implementation provide these two methods.
+Every payment implementation provides these two methods.
 
 - `processPayment(double amount)` handles payment processing and returns a success or failure result.
 - `getPaymentType()` returns the payment method's identifying label.
@@ -197,12 +197,17 @@ This allows the same checkout process to work with different payment methods.
 The application demonstrates polymorphism through the following implementation in `Paynest.java`:
 
 ```java
+
 PaymentMethod paymentMethod = new EftPayment();
 
 order.checkout(paymentMethod);
+
 ```
 
 The selected payment method can be changed without modifying the checkout logic.
+
+To add a new payment rail, a developer only needs to create a new implementation of the PaymentMethod interface and select it in the demonstration application. 
+No changes are required to the Order class or its checkout logic.
 
 For example:
 
@@ -218,9 +223,11 @@ PaymentMethod paymentMethod = new WalletPayment();
 
 The checkout call remains unchanged:
 
-```java
+``` java
+
 order.checkout(paymentMethod);
 ```
+
 
 This demonstrates how different payment implementations can be used through a single interface.
 
@@ -266,11 +273,11 @@ Wireless Keyboard | Qty: 2 | Subtotal: R1000.00
 GRAND TOTAL: R13000.00
 =================================
 
-Processing EFT payment for R13000
+Processing EFT payment for R13000.00 
 Payment successful via EFT
-Amount: R13000
-
+Amount: R13000.00
 Order 1001 completed successfully.
+
 ```
 
 The output demonstrates:
@@ -333,11 +340,15 @@ Execute the following command from the project root directory:
 mvn test
 ```
 
-A successful test execution should display:
+A successful test execution should display output similar to:
+``` text
 
-```text
+Tests run: 17, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
+
 ```
+
+
 
 ---
 
@@ -410,6 +421,7 @@ The `pom.xml` file defines:
 - JUnit Jupiter version: `5.13.4`
 - Maven Exec Plugin version: `3.3.0`
 - Main application class: `app.Paynest`
+- Maven Surefire Plugin version: `3.5.2 `
 
 ---
 

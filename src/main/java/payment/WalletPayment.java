@@ -14,14 +14,14 @@ public class WalletPayment implements PaymentMethod {
 
         System.out.println(
                 "Processing wallet payment for R"
-                        + String.format("%.0f", amount)
+                        + String.format("%.2f ", amount)
         );
 
         balance -= amount;
 
         System.out.println(
                 "Remaining wallet balance: R"
-                        + String.format("%.0f", balance)
+                        + String.format("%.2f ", balance)
         );
 
         return true;

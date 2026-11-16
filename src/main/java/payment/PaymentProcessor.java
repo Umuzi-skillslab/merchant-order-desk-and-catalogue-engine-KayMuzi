@@ -17,7 +17,7 @@ public class PaymentProcessor {
             );
 
             System.out.println(
-                    "Amount: R" + String.format("%.0f", amount)
+                    "Amount: R" + String.format("%.2f", amount)
             );
 
         } else {

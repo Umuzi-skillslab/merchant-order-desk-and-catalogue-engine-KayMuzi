@@ -12,7 +12,7 @@ public class CardPayment implements PaymentMethod {
 
         System.out.println(
                 "Processing card payment for R"
-                        + String.format("%.0f", amount)
+                        + String.format("%.2f ", amount)
         );
 
         return true;

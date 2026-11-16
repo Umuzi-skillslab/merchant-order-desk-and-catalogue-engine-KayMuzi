@@ -13,7 +13,7 @@ public class PayJustNowPayment implements PaymentMethod {
 
         System.out.println(
                 "Processing PayJustNow payment for R"
-                        + String.format("%.0f", amount)
+                        + String.format("%.2f ", amount)
         );
 
         return true;
